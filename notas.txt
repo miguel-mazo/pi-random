@@ -1,0 +1,25 @@
+**fórmula Bailey-Borwein-Plouffe para el cálculo de Pi
+https://codigojava.online/calculo-numero-pi/
+https://www.it.uc3m.es/java/git-gisc/units/repaso/guides/2/guide_solution.html
+
+**REDIS: https://github.com/IsaiasOrtiz/TutorialRedisSpringBootCache/blob/main/pom.xml
+         https://www.adictosaltrabajo.com/2014/11/11/spring-redis/
+	   https://www.youtube.com/watch?v=cb6BMRlAyd8
+
+
+version: '3'
+services:
+  redis-server:
+    container_name: redis
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+  java-service:
+    build: .
+    depends_on:
+      - redis-server
+    ports:
+      - "8080:8080"
+    environment:
+      MAX_RANDOM_PRECISION: 75
+      REDIS_ENABLED: 1

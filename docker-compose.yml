@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  redis-server:
+    container_name: redis
+    image: 'redis'
+    restart: always
+    ports:
+      - "6379:6379"
+  java-service:
+    build: .
+    links:
+      - redis-server
+    ports:
+      - "8080:8080"
+    environment:
+      MAX_RANDOM_PRECISION: 75
+      REDIS_ENABLED: 1
